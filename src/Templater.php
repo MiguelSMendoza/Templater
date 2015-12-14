@@ -1,7 +1,10 @@
 <?php
 if (!defined('DS')) define('DS',DIRECTORY_SEPARATOR);
 if (!defined('TEMPLATER_PATH')) define('TEMPLATER_PATH', dirname(preg_replace('/\\\\/','/',__FILE__)) . '/');
-if (!defined('TEMPLATER_URL')) define('TEMPLATER_URL', $_SERVER['SERVER_NAME'].str_replace(array($_SERVER['DOCUMENT_ROOT'],basename(__FILE__)),'', __FILE__));
+if (!defined('TEMPLATER_URL') && isset($_SERVER["SERVER_NAME"])) 
+	define('TEMPLATER_URL', $_SERVER['SERVER_NAME'].str_replace(array($_SERVER['DOCUMENT_ROOT'],basename(__FILE__)),'', __FILE__));
+else if (!defined('TEMPLATER_URL'))
+	define('TEMPLATER_URL',"");
 
 class Templater {
 
